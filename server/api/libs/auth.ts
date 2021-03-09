@@ -1,6 +1,5 @@
 
 import { Strategy, ExtractJwt } from "passport-jwt";
-import { Request } from "express";
 
 import { config } from "../../config/index";
 import { getUserById } from "../resurces/user/user.controller";

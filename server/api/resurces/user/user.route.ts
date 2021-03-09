@@ -54,7 +54,7 @@ userRouter.post(
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
-    const user: UserModel | undefined = await getUserByUsernameAndEmail(username, email);
+    const user = await getUserByUsernameAndEmail(username, email);
     if (user && validatePassword(user, password)) {
       logger.info(
         `User with username:${user.username} send a valid password`

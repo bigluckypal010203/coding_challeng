@@ -3,7 +3,6 @@ import { Request, Response, NextFunction, response } from "express";
 
 import logger from "../../../utils/logger";
 import { getUserByUsernameAndEmail } from "./user.controller";
-import { UserModel } from "./user.model";
 import UserError from "./user.error";
 
 
@@ -34,7 +33,7 @@ export const valideteUserInfo = (req: Request, res: Response, next: NextFunction
 
 export const checkUserAvailableInDB = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const user: UserModel | undefined = await getUserByUsernameAndEmail(
+    const user = await getUserByUsernameAndEmail(
       req.body.username,
       req.body.email
     );
@@ -57,7 +56,7 @@ export const checkUserAvailableInDB = async (req: Request, res: Response, next: 
 
 export const convertToLowerCase = (req: Request, res: Response, next: NextFunction) => {
 
-  const emailLowerCase: string = req.body.email;
+  const emailLowerCase = req.body.email;
   req.body.email = emailLowerCase.toLowerCase();
   logger.info(
     `Email: ${req.body.email}  to lowerCase emailLC:${emailLowerCase} `
@@ -69,7 +68,7 @@ export const checkUserRegister = async (req: Request, res: Response, next: NextF
 
   try {
 
-    const user: UserModel | undefined = await getUserByUsernameAndEmail(
+    const user = await getUserByUsernameAndEmail(
       "",
       req.body.email,
     );
